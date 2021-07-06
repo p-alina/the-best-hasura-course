@@ -23,6 +23,7 @@ module.exports = {
   ],
   plugins: ["@typescript-eslint", "import"],
   rules: {
+    camelcase: "off",
     quotes: ["error", "double"],
   },
 };
