@@ -1,5 +1,6 @@
-import {auth} from "firebase-admin";
 import {Request, Response, logger} from "firebase-functions";
+import {initializeApp, auth} from "firebase-admin";
+initializeApp();
 
 export const createUserHandler = async (
     request: Request,
@@ -12,7 +13,6 @@ export const createUserHandler = async (
       password,
       displayName,
     });
-
     await auth().setCustomUserClaims(user.uid, {
       "https://hasura.io/jwt/claims": {
         "x-hasura-allowed-roles": ["user"],
@@ -20,7 +20,6 @@ export const createUserHandler = async (
         "x-hasura-user-id": user.uid,
       },
     });
-
     logger.log(request.body);
     response.status(200).send({
       id: user.uid,
