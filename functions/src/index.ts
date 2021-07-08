@@ -3,7 +3,7 @@ import {notifyAboutComment01Handler} from "./notifyAboutComment01";
 import {createUserHandler} from "./createUser";
 import {getProfileHandler} from "./getProfile";
 import initApolloServer from "./remoteSchema";
-
+import {loginHandler} from "./login";
 export const notifyAboutComment01 = functions.https.onRequest(
     notifyAboutComment01Handler
 );
@@ -12,3 +12,4 @@ export const getProfile = functions.https.onRequest(getProfileHandler);
 export const userProfile = functions.https.onRequest(
     initApolloServer.createHandler()
 );
+export const login = functions.https.onRequest(loginHandler);
